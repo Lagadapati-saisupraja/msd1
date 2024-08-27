@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #taskInput {
+            width: 200px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        #addTaskBtn {
+            padding: 10px 20px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+
+        #addTaskBtn:hover {
+            background-color: #218838;
+        }
+
+        #taskList {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .taskItem {
+            display: flex;
+            justify-content: space-between;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .deleteBtn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .deleteBtn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Task Manager</h1>
+        <input type="text" id="taskInput" placeholder="Enter your task">
+        <button id="addTaskBtn">Add Task</button>
+        <ul id="taskList"></ul>
+    </div>
+
+    <script>
+        document.getElementById('addTaskBtn').addEventListener('click', function() {
+            let taskInput = document.getElementById('taskInput');
+            let taskValue = taskInput.value.trim();
+
+            if (taskValue !== '') {
+                addTask(taskValue);
+                taskInput.value = '';
+            }
+        });
+
+        function addTask(task) {
+            let taskList = document.getElementById('taskList');
+
+            let li = document.createElement('li');
+            li.className = 'taskItem';
+            li.innerHTML = ${task} <button class="deleteBtn">Delete</button>;
+            
+            taskList.appendChild(li);
+
+            li.querySelector('.deleteBtn').addEventListener('click', function() {
+                taskList.removeChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
